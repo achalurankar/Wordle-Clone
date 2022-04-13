@@ -1,0 +1,40 @@
+wordle algo
+request 
+{
+    word
+    attempt
+}
+
+response
+{
+    code
+    message
+    data {
+        letters {
+            letter
+            color
+        }
+    }
+}
+
+set current_word
+if word is not in list
+    return res
+
+if word == current_word
+    return res
+
+for letters in word
+if letter exists in current_word
+    if letter index == current_word index
+        set color green
+    else
+        set color orange
+else
+    set no color
+
+return res
+
+----------------------------------------------------------------------------------------
+endpoint for words https://random-word-api.herokuapp.com/word?number=10&length=20
+endpoint for word check https://api.dictionaryapi.dev/api/v2/entries/en/goofy

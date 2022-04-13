@@ -1,38 +1,101 @@
-.App {
-  text-align: center;
+:root{
+  --green: #6aaa64;
+  --darkendGreen: #538d4e;
+  --yellow: #c9b458;
+  --darkendYellow: #b59f3b;
+  --lightGray: #d8d8d8;
+  --gray: #86888a;
+  --darkGray: #939598;
+  --white: #fff;
+  --black: #212121;
+  --orange: #f5793a;
+  --blue: #85c0f9;
+  --key-color: #ffffff;
+  --dark-gray: #3a3a3c;
+  --key-bg: #818385;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.App{
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+}
+
+body {
+  background-color: var(--black);
+}
+
+
+.grid{
+  display: grid;
+  grid-template: auto auto / repeat(5, 1fr);
+  gap: 5px;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.grid-item{ 
+  border: 1.8px solid var(--dark-gray);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  text-transform: uppercase;
+  gap: 0px;
+  font-weight: bold;
+  font-size: 25px;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.grid-item.correct{
+  border: none;
+  background-color: var(--green);
+  color: var(--white);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.grid-item.wrong{
+  border: none;
+  background-color: var(--dark-gray);
+  color: var(--white);
+}
+
+.grid-item.partial{
+  border: none;
+  background-color: var(--darkendYellow);
+  color: var(--white);
+}
+
+.keyboard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  row-gap: 5px;
+}
+
+.key-container {
+  display: flex;
+  flex-direction: row;
+  column-gap: 5px;
+  justify-content: center;
+  align-items: center;
+}
+
+.key {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--key-bg);
+  color: var(--key-color);
+  width: auto;
+  height: auto;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
 }
