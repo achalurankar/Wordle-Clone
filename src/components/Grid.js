@@ -1,4 +1,4 @@
-import Data from './data/Data';
+import Data from '../data/Data';
 
 export default function Grid(props) {
     
