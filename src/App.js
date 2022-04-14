@@ -10,8 +10,10 @@ function App() {
   const[boxes, setBoxes] = useState(Data.getBlankData())
   const[currIIndex, setCurrentIIndex] = useState(0)
   const[currJIndex, setCurrentJIndex] = useState(0)
+  const[isGameFinished, setGameFinished] = useState(false)
 
   function onKeyPress(key) {
+    if(isGameFinished) return
     //is alphabet
     if(key.length === 1 /* && key.match(/^[A-Za-z]+$/) */){ //commented pattern match as its not required  layout keyboard is used, key down event was misbehaving at one stage
       key = key.toUpperCase();
@@ -54,6 +56,15 @@ function App() {
           })
           setBoxes(newBoxes)
           let newIndex = currIIndex + 1
+          console.log(res)
+          if(newIndex === Data.NO_OF_ATTEMPTS || (res.message && res.message.includes('Got'))){
+            setGameFinished(true)
+            if(res.message)
+              showToast(res.message)
+            else  
+              showToast('Oops, you lost :(\nCorrect Word - ' + res.correctWord)
+            return
+          }
           setCurrentIIndex(newIndex)
           setCurrentJIndex(0)
           console.log(currIIndex, currJIndex)

@@ -49,7 +49,8 @@ export default class Data {
         }
         else {
             response.status = this.SUCCESS
-            if(this.word === word) {
+            response.correctWord = this.currentWord
+            if(this.currentWord === word) {
                 response.message = 'You Got it!'
                 for(let i = 0; i < word.length; i++){
                     response.results.push({
