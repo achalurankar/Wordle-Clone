@@ -12,9 +12,9 @@ export default class Data {
     static NO_OF_ATTEMPTS = 6
 
     static getBlankData() {
-        let data = Array.from(Array(Data.NO_OF_LETTERS), () => new Array(Data.NO_OF_ATTEMPTS));
-        for(let i = 0; i < Data.NO_OF_LETTERS; i++){
-            for(let j = 0; j < Data.NO_OF_ATTEMPTS; j++){
+        let data = Array.from(Array(Data.NO_OF_ATTEMPTS), () => new Array(Data.NO_OF_LETTERS));
+        for(let i = 0; i < Data.NO_OF_ATTEMPTS; i++){
+            for(let j = 0; j < Data.NO_OF_LETTERS; j++){
                 data[i][j] = {
                     id : `${i}_${j}`,
                     letter : null,
