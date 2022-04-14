@@ -12,8 +12,9 @@ function App() {
   const boxesElements = []
   boxes.forEach((boxRow, i) => {
     boxRow.forEach((box, j) => {
+      let className = decideClassName(box)
       boxesElements.push(
-        <div key={box.id} className='grid-item'>{box.letter}</div>
+        <div key={box.id} className={className}>{box.letter}</div>
       )
     })
   });
@@ -41,13 +42,38 @@ function App() {
     }
     //else if is enter
     else if(key === 'Enter'){
-      //todo enter operation
-      console.log(key)
+      //make word from letters
+      let word = ''
+      boxes[currIIndex].forEach((box, j) => {
+        if(box.letter)
+          word += box.letter;
+      })
+      if(word.length < Data.NO_OF_LETTERS) {
+        console.log('not enough letters')
+        return
+      }
+      //process the word
+      Data.checkWord(word, res => {
+        console.log(res)
+        if(res.status === Data.SUCCESS) {
+          let newBoxes = [...boxes]
+          res.results.forEach((item, i) => {
+            newBoxes[currIIndex][i].color = item.color
+          })
+          setBoxes(newBoxes)
+          let newIndex = currIIndex + 1
+          setCurrentIIndex(newIndex)
+          setCurrentJIndex(0)
+          console.log(currIIndex, currJIndex)
+        }
+      })
     } else if(key === 'Delete') {
       console.log('in delete')
       let newIndex = currJIndex !== Data.NO_OF_LETTERS - 1 ? (currJIndex - 1) : currJIndex
       console.log('new index ' + newIndex + ' curr j ' + currJIndex)
       let newBoxes = [...boxes]
+      if(newIndex < 0)
+        return
       if(newBoxes[currIIndex][newIndex].letter === null) //if still pointing to last element
         newIndex--;
       if(newIndex < 0)
@@ -59,6 +85,17 @@ function App() {
       setCurrentJIndex(newIndex)
       setBoxes(newBoxes)
     }
+  }
+
+  function decideClassName(box) {
+    let className = 'grid-item'
+    if(box.color === Data.PARTIAL) 
+      className += ' partial'
+    else if(box.color === Data.RIGHT) 
+      className += ' correct'
+    else if(box.color === Data.WRONG) 
+      className += ' wrong'
+    return className
   }
 
   return (
