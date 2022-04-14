@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './App.css';
+import Grid from './components/Grid';
 import Keyboard from './components/Keyboard';
 import Data from './data/Data';
 
@@ -8,16 +9,6 @@ function App() {
   const[boxes, setBoxes] = useState(Data.getBlankData())
   const[currIIndex, setCurrentIIndex] = useState(0)
   const[currJIndex, setCurrentJIndex] = useState(0)
-
-  const boxesElements = []
-  boxes.forEach((boxRow, i) => {
-    boxRow.forEach((box, j) => {
-      let className = decideClassName(box)
-      boxesElements.push(
-        <div key={box.id} className={className}>{box.letter}</div>
-      )
-    })
-  });
 
   function onKeyPress(key) {
     //is alphabet
@@ -87,22 +78,9 @@ function App() {
     }
   }
 
-  function decideClassName(box) {
-    let className = 'grid-item'
-    if(box.color === Data.PARTIAL) 
-      className += ' partial'
-    else if(box.color === Data.RIGHT) 
-      className += ' correct'
-    else if(box.color === Data.WRONG) 
-      className += ' wrong'
-    return className
-  }
-
   return (
     <div className="App">
-      <div className='grid'>
-        {boxesElements}
-      </div>
+        <Grid boxes={boxes} />
       <div>
         <Keyboard onKeyPress={onKeyPress} />
       </div>
