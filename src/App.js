@@ -3,6 +3,7 @@ import './App.css';
 import Grid from './components/Grid';
 import Keyboard from './components/Keyboard';
 import Data from './data/Data';
+import Toast from './util/Toast';
 
 function App() {
   // console.log('component rendered');
@@ -24,7 +25,7 @@ function App() {
         }
         let newIndex = (currJIndex + 1)
         if(newIndex === Data.NO_OF_LETTERS)
-        newIndex = Data.NO_OF_LETTERS - 1
+          newIndex = Data.NO_OF_LETTERS - 1
         //setting values directly without callback
         setBoxes(newBoxes)
         setCurrentJIndex(newIndex)
@@ -40,7 +41,7 @@ function App() {
           word += box.letter;
       })
       if(word.length < Data.NO_OF_LETTERS) {
-        console.log('not enough letters')
+        showToast('Not enough letters')
         return
       }
       //process the word
@@ -56,6 +57,8 @@ function App() {
           setCurrentIIndex(newIndex)
           setCurrentJIndex(0)
           console.log(currIIndex, currJIndex)
+        } else {
+          showToast(res.message)
         }
       })
     } else if(key === 'Delete') {
@@ -76,6 +79,13 @@ function App() {
       setCurrentJIndex(newIndex)
       setBoxes(newBoxes)
     }
+  }
+
+  function showToast(msg){
+    new Toast({ 
+      text : msg, 
+      position : "top-right"
+    })
   }
 
   return (
