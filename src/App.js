@@ -103,7 +103,7 @@ function App() {
     <div className="App">
         <Grid boxes={boxes} />
       <div>
-        <Keyboard onKeyPress={onKeyPress} />
+        <Keyboard onKeyPress={onKeyPress} boxes={boxes} />
       </div>
     </div>
   );

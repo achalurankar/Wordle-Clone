@@ -51,22 +51,26 @@ body {
   color: white;
 }
 
-.grid-item.correct{
+.correct{
   border: none;
   background-color: var(--green);
   color: var(--white);
 }
 
-.grid-item.wrong{
+.wrong{
   border: none;
   background-color: var(--dark-gray);
   color: var(--white);
 }
 
-.grid-item.partial{
+.partial{
   border: none;
   background-color: var(--darkendYellow);
   color: var(--white);
+}
+
+.unused{
+  background-color: var(--key-bg);
 }
 
 .keyboard {
@@ -89,7 +93,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: var(--key-bg);
   color: var(--key-color);
   width: auto;
   height: auto;
